@@ -37,6 +37,10 @@ public class Borsa {
     public int getNumeroAttrezzi() {
     	return this.numeroAttrezzi;
     }
+    
+    public Attrezzo[] getAttrezzi() {
+    	return this.attrezzi;
+    }
 
     public Attrezzo getAttrezzo(String nomeAttrezzo) {
         Attrezzo a = null;
