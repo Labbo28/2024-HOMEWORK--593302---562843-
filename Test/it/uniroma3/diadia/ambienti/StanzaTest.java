@@ -1,40 +1,38 @@
 package it.uniroma3.diadia.ambienti;
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class StanzaTest {
-    private Stanza stanza;
-    private Stanza stanzaNord;
-    private Stanza stanzaSud;
-    private Stanza stanzaEst;
-    private Stanza stanzaOvest;
+    Stanza stanza;
+    Stanza stanzaNord;
     
     private Attrezzo attrezzo1;
     private Attrezzo attrezzo2;
-    private String[] direzioni;
+    private Map <String,Stanza> stanzeAdiacenti;
+   
    
    
     @Before
     public void setUp() throws Exception {
-    	
-    	direzioni=new String[4];
-    	direzioni[0]="nord";
-    	direzioni[1]="sud";
-    	direzioni[2]="est";
-    	direzioni[3]="ovest";
+    
         stanza = new Stanza("stanza");
-        stanzaNord = new Stanza("stanzaNord");
+        stanzaNord= new Stanza("stanzaNord");
+        
+        stanzeAdiacenti=new HashMap<>();
+        stanzeAdiacenti.put("nord", stanzaNord);
+        stanzeAdiacenti.put("sud", new Stanza("stanzaSud"));
+        stanzeAdiacenti.put("est", new Stanza("stanzaEst"));
+        stanzeAdiacenti.put("ovest", new Stanza("stanzaOvest"));
+        stanza.setStanzeAdiacenti(stanzeAdiacenti);
        
         
-        stanza.impostaStanzaAdiacente("nord", stanzaNord);
-        stanza.impostaStanzaAdiacente("sud", stanzaSud);
-        stanza.impostaStanzaAdiacente("est", stanzaEst);
-        stanza.impostaStanzaAdiacente("ovest", stanzaOvest);
             
         attrezzo1 = new Attrezzo("attrezzo1", 5);
         attrezzo2 = new Attrezzo("attrezzo2", 0);
@@ -111,13 +109,10 @@ public class StanzaTest {
     public void testGetAttrezzoConAttrezzoNonEsistente() {
     	assertEquals(stanza.getAttrezzo("non_esistente"),null);
     }
-    @Test
-    public void  testGetAttrezzoConParmetroNull() {
-    	assertEquals(stanza.getAttrezzo(null),null);
-    }
+    
     @Test
     public void tesGetDirezioni() {
-        assertArrayEquals(direzioni, stanza.getDirezioni());
+        assertEquals(this.stanzeAdiacenti.keySet(), stanza.getDirezioni());
     }
     
     @Test

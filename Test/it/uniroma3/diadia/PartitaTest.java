@@ -9,10 +9,11 @@ import it.uniroma3.diadia.giocatore.Giocatore;
 public class PartitaTest {
 
     private Partita partita;
-
+    private Labirinto labirinto;
     @Before
     public void setUp() {
-        partita = new Partita();
+    	labirinto= new Labirinto();
+        partita = new Partita(labirinto);
     }
 
     @Test

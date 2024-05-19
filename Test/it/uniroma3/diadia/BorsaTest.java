@@ -1,6 +1,13 @@
 package it.uniroma3.diadia;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,10 +16,30 @@ import it.uniroma3.diadia.giocatore.Borsa;
 
 public class BorsaTest {
     private Borsa borsa;
+   private List <Attrezzo> listaOrdinata;
+   private List <Attrezzo> listaDisordinata;
+   private Map<Integer, Set<Attrezzo>> mappa;
 
     @Before
     public void setUp() {
+    	mappa=new HashMap<>();
+    	listaOrdinata=new ArrayList<>();
+    	listaDisordinata=new ArrayList<>();
         borsa = new Borsa();
+        
+        listaOrdinata.add(new Attrezzo("pesce",1));
+        listaOrdinata.add(new Attrezzo("pistola",1));
+        listaOrdinata.add(new Attrezzo("pennarello",3));
+        
+        listaDisordinata.add(new Attrezzo("pesce",1));
+        listaDisordinata.add(new Attrezzo("pistola",1));
+        listaDisordinata.add(new Attrezzo("pennarello",3));
+    }
+    @Test public void testGetContenutoRaggruppatoPerPeso() {
+    	borsa.setAttrezzi(listaDisordinata);;
+    	mappa.putAll(borsa.getContenutoRaggruppatoPerPeso());
+    	
+    	assertEquals(2,mappa.size());
     }
 
     @Test
@@ -33,6 +60,14 @@ public class BorsaTest {
     @Test
     public void testBorsaVuotaAllInizio() {
         assertTrue(borsa.isEmpty());
+    }
+    @Test
+    public void testGetContenutoOrdinatoPerPeso() {
+    	borsa.setAttrezzi(listaDisordinata);
+    	borsa.setAttrezzi(borsa.getContenutoOrdinatoPerPeso());
+    	for(int i=0;i<3;i++) {
+    		assertEquals(listaOrdinata.get(i),borsa.getAttrezzi().get(i));
+    	}
     }
 
     @Test

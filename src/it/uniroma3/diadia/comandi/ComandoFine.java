@@ -24,5 +24,10 @@ public class ComandoFine implements Comando {
 		// TODO Auto-generated method stub
 
 	}
+	@Override
+	public void setIo(IO io) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

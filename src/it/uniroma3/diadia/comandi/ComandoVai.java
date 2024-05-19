@@ -23,7 +23,7 @@ console=new IOConsole();
 */
 @Override
 public void esegui(Partita partita) {
-	Stanza stanzaCorrente=partita.labirinto.getStanzaCorrente();
+	Stanza stanzaCorrente=partita.getLabirinto().getStanzaCorrente();
 	Stanza prossimaStanza=null;
 	
 	if(direzione==null) {
@@ -36,14 +36,18 @@ public void esegui(Partita partita) {
 		return;
 	}
 	
-	partita.labirinto.setStanzaCorrente(prossimaStanza);
-	 console.mostraMessaggio(partita.labirinto.getStanzaCorrente().getDescrizione());
+	partita.getLabirinto().setStanzaCorrente(prossimaStanza);
+	 console.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getDescrizione());
 	partita.getGiocatore().setCfu(partita.getGiocatore().getCfu()-1);
   }
 @Override
 public void setParametro(String parametro) {
 	this.direzione=parametro;
 }
-
+@Override
+public void setIo(IO io) {
+	this.console=io;
+	
+}
 
 }

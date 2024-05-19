@@ -23,10 +23,10 @@ public class ComandoPrendi implements Comando {
 	@Override
 	public void esegui(Partita partita) {
 		if (nomeOggetto != null) {
-	        Borsa borsa = partita.giocatore.getBorsa();
+	        Borsa borsa = partita.getGiocatore().getBorsa();
 	       
 	        if (borsa != null) {
-	            Stanza stanzaCorrente = partita.labirinto.getStanzaCorrente();
+	            Stanza stanzaCorrente = partita.getLabirinto().getStanzaCorrente();
 	            Attrezzo attrezzoDaRaccogliere = stanzaCorrente.getAttrezzo(nomeOggetto);
 	            if (attrezzoDaRaccogliere != null) {
 	                if (borsa.addAttrezzo(attrezzoDaRaccogliere)) {
@@ -52,6 +52,11 @@ public class ComandoPrendi implements Comando {
 	
 	public void setIO(IO io) {
 		this.console=io;
+	}
+	@Override
+	public void setIo(IO io) {
+		this.console=io;
+		
 	}
 
 	

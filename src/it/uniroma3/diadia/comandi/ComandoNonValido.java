@@ -20,6 +20,10 @@ public class ComandoNonValido implements Comando {
 
 	}
 
-	
+	@Override
+	public void setIo(IO io) {
+		this.console=io;
+		
+	}
 
 }

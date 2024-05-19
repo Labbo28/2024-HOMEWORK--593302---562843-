@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.ComandoPosa;
@@ -16,35 +18,37 @@ public class ComandoPosaTest {
 	Borsa borsa;
 	Stanza stanza;
 	Attrezzo attrezzo;
+	LabirintoBuilder LabBuilder;
+	Labirinto labirinto;
 	IO console;
 	
 	@Before
 	public void setUp() throws Exception {
-		stanza=new Stanza("Sala giochi");
-		partita=new Partita();
-		partita.labirinto.setStanzaCorrente(stanza);
-		borsa=new Borsa();
-		partita.giocatore.setBorsa(borsa);
-		attrezzo=new Attrezzo("pallina",4);
-		borsa.addAttrezzo(attrezzo);
+		attrezzo=new Attrezzo("pallina",1);
+		LabBuilder=new LabirintoBuilder();
+		labirinto=LabBuilder.getLabirinto();
+		partita=new Partita(labirinto);
 		console=new IOConsole();
 	}
 
 	@Test
 	public void testGetParametro() {
+		LabBuilder.addStanzaIniziale("stanza inziale").addAttrezzo("pallina", 1);
 		comando=new ComandoPosa("pallina");
 		comando.setIO(console);
-		
 		assertEquals("pallina",comando.getParametro());
 		
 	}
 	
 	@Test 
 	public void testPosaOggettoPresenteNellaBorsa() {
+		LabBuilder.addStanzaIniziale("stanza inziale");
+		partita.getGiocatore().getBorsa().addAttrezzo(attrezzo);
+		
 		comando=new ComandoPosa("pallina");
 		comando.setIO(console);
 		comando.esegui(partita);
-		assertEquals(stanza.getAttrezzo("pallina"),attrezzo);
+		assertEquals(labirinto.getStanzaCorrente().getAttrezzo("pallina"),attrezzo);
 	}
 	
 	public void testPosaOggettoNonPresenteNellaBorsa() {

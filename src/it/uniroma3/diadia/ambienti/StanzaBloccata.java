@@ -1,5 +1,9 @@
 package it.uniroma3.diadia.ambienti;
 
+import java.util.Set;
+
+import it.uniroma3.diadia.attrezzi.Attrezzo;
+
 public class StanzaBloccata extends Stanza{
 
 	private static String direzioneBloccataDefault="nord";
@@ -37,24 +41,33 @@ public class StanzaBloccata extends Stanza{
 	
 	@Override
 	public String getDescrizione() {
-		StringBuilder bloccata = new StringBuilder();
-		bloccata.append( "Stanza bloccata nella direzione: "+ direzioneBloccata+
-				"\nPrendi l'oggetto: " + chiave + " e posalo nella stanza");
-		
-		bloccata.append("\ndirezione disponibili: ");
-		for(int i=0; i<this.getNumeroStanzeAdiacenti();i++) {
-			if(this.getDirezioni()[i]!="nord")
-				bloccata.append(this.getDirezioni()[i]+" ");
-		}
-		bloccata.append("\nattrezzi nella stanza: ");
-		for(int i=0;i<this.getNumeroAttrezzi();i++) {
-			bloccata.append(this.getAttrezzi()[i]);
-		}
+	    StringBuilder bloccata = new StringBuilder();
+	    
+	    // Ottieni le direzioni adiacenti come un set
+	    Set<String> direzioni = this.getDirezioni();
 
-		if(!this.hasAttrezzo(chiave))
-			return bloccata.toString();
-		return super.getDescrizione();
+	    bloccata.append("Stanza bloccata nella direzione: ").append(direzioneBloccata)
+	            .append("\nPrendi l'oggetto: ").append(chiave).append(" e posalo nella stanza");
+	    
+	    bloccata.append("\nDirezioni disponibili: ");
+	    for (String direzione : direzioni) {
+	        if (!direzione.equals("nord")) {
+	            bloccata.append(direzione).append(" ");
+	        }
+	    }
+	    
+	    bloccata.append("\nAttrezzi nella stanza: ");
+	    for (Attrezzo attrezzo : this.getAttrezzi()) {
+	        bloccata.append(attrezzo.getNome()).append(" ");
+	    }
+
+	    if (!this.hasAttrezzo(chiave)) {
+	        return bloccata.toString();
+	    }
+	    
+	    return super.getDescrizione();
 	}
+
 	
 	
 

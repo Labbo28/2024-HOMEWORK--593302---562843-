@@ -9,20 +9,20 @@ import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.giocatore.Borsa;
 
-public class ComandoGuarda implements Comando {
-	IO console;
+public class ComandoGuardaOrdinatoPerPeso implements Comando{
+	IOConsole console;
+
 	
-	public ComandoGuarda() {
+	public ComandoGuardaOrdinatoPerPeso() {
 		console=new IOConsole();
 	}
 	@Override
 	public void esegui(Partita partita) {
-		 Stanza stanzaCorrente=partita.getLabirinto().getStanzaCorrente();
+		Stanza stanzaCorrente=partita.getLabirinto().getStanzaCorrente();
 		 Borsa borsa=partita.getGiocatore().getBorsa();
-		 List<Attrezzo> attrezziBorsa=borsa.getAttrezzi();
+		 List<Attrezzo> attrezziBorsa=borsa.getContenutoOrdinatoPerPeso();
 		 
-		 
-		 console.mostraMessaggio(stanzaCorrente.getDescrizione()+"\nContenuto borsa:");
+		 console.mostraMessaggio(stanzaCorrente.getDescrizione()+"\nContenuto borsa ordinato per peso:");
 		 if(borsa.getNumeroAttrezzi()==0)
 			 console.mostraMessaggio("  la borsa è vuota");
 		 else
@@ -30,8 +30,8 @@ public class ComandoGuarda implements Comando {
 				 console.mostraMessaggio("["+attrezziBorsa.get(i)+"]");
 		 }
 		 console.mostraMessaggio("\n");
-		 console.mostraMessaggio("CFU rimanenti: "+partita.getGiocatore().getCfu());
-
+		 
+		
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class ComandoGuarda implements Comando {
 	}
 	@Override
 	public void setIo(IO io) {
-		this.console=io;
+		this.console=(IOConsole) io;
 		
 	}
 }
