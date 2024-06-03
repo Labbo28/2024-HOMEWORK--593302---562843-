@@ -18,6 +18,8 @@ import it.uniroma3.diadia.Partita;
 public interface Comando {
 	
 	public void esegui(Partita partita);
+	
+	public String getParametro();
 
 	void setParametro(String parametro);
 

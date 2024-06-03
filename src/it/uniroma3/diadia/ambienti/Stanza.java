@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
 
 /**
@@ -29,6 +30,7 @@ public class Stanza {
 	private String nome;
 	private List <Attrezzo> attrezzi;
 	private Map<String,Stanza> stanzeAdiacenti;
+	private AbstractPersonaggio personaggio;
 	
 	
 
@@ -214,4 +216,12 @@ public boolean equals(Object o) {
 	public Map <String,Stanza> getMapStanzeAdiacenti(){
 		return this.stanzeAdiacenti;
 	}
+
+	public void setPersonaggio(AbstractPersonaggio ap) {
+        this.personaggio = ap;
+    }
+
+    public AbstractPersonaggio getPersonaggio() {
+        return this.personaggio;
+    }
 }

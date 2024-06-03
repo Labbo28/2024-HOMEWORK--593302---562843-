@@ -58,6 +58,11 @@ public class ComandoPrendi implements Comando {
 		this.console=io;
 		
 	}
+	@Override
+	public String getParametro() {
+		// TODO Auto-generated method stub
+		return this.nomeOggetto;
+	}
 
 	
 	

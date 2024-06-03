@@ -3,7 +3,7 @@ import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 
-public class ComandoNonValido implements Comando {
+public class ComandoNonValido extends AbstractComando {
 	IO console;
 	public ComandoNonValido() {
 		console=new IOConsole();
@@ -14,11 +14,7 @@ public class ComandoNonValido implements Comando {
 
 	}
 
-	@Override
-	public void setParametro(String parametro) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 	@Override
 	public void setIo(IO io) {

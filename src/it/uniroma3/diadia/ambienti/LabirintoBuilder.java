@@ -5,7 +5,7 @@ import java.util.Map;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-public class LabirintoBuilder {
+public class LabirintoBuilder extends Labirinto{
 private Labirinto labirinto;
 private Map<String,Stanza> mappa;
 private Stanza ultimaStanza;

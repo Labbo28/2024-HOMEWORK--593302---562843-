@@ -10,7 +10,7 @@ import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.giocatore.Borsa;
 
-public class ComandoGuardaRaggruppatoPerPeso implements Comando {
+public class ComandoGuardaRaggruppatoPerPeso extends AbstractComando {
 	IOConsole console;
 	
 	public ComandoGuardaRaggruppatoPerPeso() {
@@ -33,11 +33,8 @@ public class ComandoGuardaRaggruppatoPerPeso implements Comando {
 
 	}
 
-	@Override
-	public void setParametro(String parametro) {
-		// TODO Auto-generated method stub
-
-	}
+	
+	
 	@Override
 	public void setIo(IO io) {
 		this.console=(IOConsole) io;

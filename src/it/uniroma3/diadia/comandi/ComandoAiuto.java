@@ -6,7 +6,7 @@ import it.uniroma3.diadia.Partita;
 /**
  * Stampa informazioni di aiuto.
  */
-public class ComandoAiuto implements Comando {
+public class ComandoAiuto extends AbstractComando {
 	IO console;
 	public ComandoAiuto() {
 		console=new IOConsole();
@@ -21,11 +21,6 @@ public class ComandoAiuto implements Comando {
 		 console.mostraMessaggio("\n");
 	}
 
-	@Override
-	public void setParametro(String parametro) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void setIo(IO io) {

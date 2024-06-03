@@ -50,4 +50,10 @@ public void setIo(IO io) {
 	
 }
 
+@Override
+public String getParametro() {
+	// TODO Auto-generated method stub
+	return this.getParametro();
+}
+
 }
