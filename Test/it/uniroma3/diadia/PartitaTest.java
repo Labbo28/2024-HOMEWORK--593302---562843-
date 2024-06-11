@@ -1,6 +1,9 @@
 package it.uniroma3.diadia;
 
 import static org.junit.Assert.*;
+
+import java.io.FileNotFoundException;
+
 import org.junit.Before;
 import org.junit.Test;
 import it.uniroma3.diadia.ambienti.Labirinto;
@@ -11,8 +14,8 @@ public class PartitaTest {
     private Partita partita;
     private Labirinto labirinto;
     @Before
-    public void setUp() {
-    	labirinto= new Labirinto();
+    public void setUp() throws FileNotFoundException, FormatoFileNonValidoException {
+    	labirinto= new Labirinto("Labirinto5.txt");
         partita = new Partita(labirinto);
     }
 

@@ -8,22 +8,17 @@ import it.uniroma3.diadia.Partita;
  */
 
 public class ComandoFine extends AbstractComando {
-	IO console;
+	
 	public ComandoFine() {
-		console=new IOConsole();
+	
 	}
 	public void esegui(Partita partita) {
 		 
-		console.mostraMessaggio("Grazie per aver giocato!!");
+		this.getIo().mostraMessaggio("Grazie per aver giocato!!");
 
 	}
 
 	
-	@Override
-	public void setIo(IO io) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 
 }

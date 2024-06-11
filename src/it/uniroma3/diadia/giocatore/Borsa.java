@@ -1,5 +1,9 @@
 package it.uniroma3.diadia.giocatore;
 
+
+
+import it.uniroma3.diadia.attrezzi.ComparatorePerPeso;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,14 +13,13 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import it.uniroma3.diadia.attrezzi.ComparatorePerPeso;
-
-
+import it.uniroma3.diadia.Configuratore;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.attrezzi.ComparatoreAttrezzoPerNome;
 
 public class Borsa {
 	
-    public final static int DEFAULT_PESO_MAX_BORSA = 10;
+    public final static int DEFAULT_PESO_MAX_BORSA = Configuratore.getPesoMax();
     private int pesoMax;
     private List<Attrezzo> attrezzi;
 
@@ -47,7 +50,7 @@ public class Borsa {
     
     public SortedSet<Attrezzo> getContenutoOrdinatoPerNome() {
     	
-        SortedSet<Attrezzo> contenutoOrdinatoPerNome = new TreeSet<Attrezzo>(new ComparatoreAttrezzoPerNome());
+        SortedSet<Attrezzo> contenutoOrdinatoPerNome = new TreeSet<>(new ComparatoreAttrezzoPerNome());
         contenutoOrdinatoPerNome.addAll(this.attrezzi);
 
         return contenutoOrdinatoPerNome;
@@ -142,5 +145,11 @@ public class Borsa {
             s.append("Borsa vuota");
         return s.toString();
     }
+
+    public boolean getPesoRimanente(Attrezzo a) {
+		if(a != null && this.getPesoMax()-this.getPeso()>=a.getPeso())
+			return true;
+		return false; 
+	}
 
 }

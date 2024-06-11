@@ -1,74 +1,33 @@
 package it.uniroma3.diadia.ambienti;
 
-import java.util.Set;
+public class StanzaBloccata extends Stanza {
 
-import it.uniroma3.diadia.attrezzi.Attrezzo;
+	private Direzione direzioneBloccata;
+	private String attrezzoSbloccante;
 
-public class StanzaBloccata extends Stanza{
-
-	private static String direzioneBloccataDefault="nord";
-	private static String chiaveDefault="chiave";
-	
-	private String direzioneBloccata;
-	private String chiave;
-	
-	
-	public StanzaBloccata(String Nome) {
-		this(Nome,direzioneBloccataDefault, chiaveDefault);
-	}
-	public StanzaBloccata(String nome,String direzione,String chiave) {
+	public StanzaBloccata(String nome, Direzione direzioneBloccata, String attrezzoSbloccante) {
 		super(nome);
-		this.direzioneBloccata=direzioneBloccataDefault;
-		this.chiave=chiave;
-		
-		// TODO Auto-generated constructor stub
+		this.direzioneBloccata = direzioneBloccata;
+		this.attrezzoSbloccante = attrezzoSbloccante;
 	}
-	
-	
+
+
+
 	@Override
-	
-	public Stanza getStanzaAdiacente(String direzione) {
-		String bloccata="ti serve l'oggetto "+chiave+" per passare";
-		
-		if(direzione.equals(this.direzioneBloccata) && !this.hasAttrezzo(chiave)) {
-			bloccata.toString();
+	public Stanza getStanzaAdiacente(Direzione direzione) {
+		if(direzioneBloccata.equals(direzione) && !this.hasAttrezzo(attrezzoSbloccante)) {
 			return this;
 		}
-		
-		return super.getStanzaAdiacente(direzione);	
-		
+		return super.getStanzaAdiacente(direzione);
 	}
-	
+
 	@Override
 	public String getDescrizione() {
-	    StringBuilder bloccata = new StringBuilder();
-	    
-	    // Ottieni le direzioni adiacenti come un set
-	    Set<String> direzioni = this.getDirezioni();
+		String bloccata = "Stanza bloccata nella direzione: "+ direzioneBloccata+"\nPrendi il " + attrezzoSbloccante + " e posalo nella stanza";
 
-	    bloccata.append("Stanza bloccata nella direzione: ").append(direzioneBloccata)
-	            .append("\nPrendi l'oggetto: ").append(chiave).append(" e posalo nella stanza");
-	    
-	    bloccata.append("\nDirezioni disponibili: ");
-	    for (String direzione : direzioni) {
-	        if (!direzione.equals("nord")) {
-	            bloccata.append(direzione).append(" ");
-	        }
-	    }
-	    
-	    bloccata.append("\nAttrezzi nella stanza: ");
-	    for (Attrezzo attrezzo : this.getAttrezzi()) {
-	        bloccata.append(attrezzo.getNome()).append(" ");
-	    }
-
-	    if (!this.hasAttrezzo(chiave)) {
-	        return bloccata.toString();
-	    }
-	    
-	    return super.getDescrizione();
+		if(!this.hasAttrezzo(attrezzoSbloccante))
+			return bloccata;
+		return super.getDescrizione();
 	}
-
-	
-	
-
 }
+

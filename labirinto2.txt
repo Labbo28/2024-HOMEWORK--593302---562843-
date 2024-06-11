@@ -1,0 +1,11 @@
+Stanze:Atrio,AulaCampus
+Magica:
+Buia:
+Bloccata:  
+Inizio:Atrio
+Vincente:AulaCampus
+Mago:
+Cane:
+Strega:
+Attrezzi:Torcia 2 Atrio
+Uscite:Atrio nord AulaCampus, AulaCampus sud Atrio

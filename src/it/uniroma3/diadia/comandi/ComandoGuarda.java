@@ -10,10 +10,9 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.giocatore.Borsa;
 
 public class ComandoGuarda extends AbstractComando {
-	IO console;
-	
+
 	public ComandoGuarda() {
-		console=new IOConsole();
+		
 	}
 	@Override
 	public void esegui(Partita partita) {
@@ -22,23 +21,18 @@ public class ComandoGuarda extends AbstractComando {
 		 List<Attrezzo> attrezziBorsa=borsa.getAttrezzi();
 		 
 		 
-		 console.mostraMessaggio(stanzaCorrente.getDescrizione()+"\nContenuto borsa:");
+		this.getIo().mostraMessaggio(stanzaCorrente.getDescrizione()+"\nContenuto borsa:");
 		 if(borsa.getNumeroAttrezzi()==0)
-			 console.mostraMessaggio("  la borsa è vuota");
+			 this.getIo().mostraMessaggio("  la borsa è vuota");
 		 else
 			 for(int i=0;i<borsa.getNumeroAttrezzi();i++) {
-				 console.mostraMessaggio("["+attrezziBorsa.get(i)+"]");
+				 this.getIo().mostraMessaggio("["+attrezziBorsa.get(i)+"]");
 		 }
-		 console.mostraMessaggio("\n");
-		 console.mostraMessaggio("CFU rimanenti: "+partita.getGiocatore().getCfu());
+		 this.getIo().mostraMessaggio("\n");
+		 this.getIo().mostraMessaggio("CFU rimanenti: "+partita.getGiocatore().getCfu());
 
 	}
 
 		
 
-	@Override
-	public void setIo(IO io) {
-		this.console=io;
-		
-	}
 }

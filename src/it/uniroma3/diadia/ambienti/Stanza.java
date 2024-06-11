@@ -29,7 +29,7 @@ public class Stanza {
 
 	private String nome;
 	private List <Attrezzo> attrezzi;
-	private Map<String,Stanza> stanzeAdiacenti;
+	private Map<Direzione,Stanza> stanzeAdiacenti;
 	private AbstractPersonaggio personaggio;
 	
 	
@@ -50,7 +50,7 @@ public class Stanza {
 	 * @param direzione direzione in cui sara' posta la stanza adiacente.
 	 * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
 	 */
-	void impostaStanzaAdiacente(String direzione,Stanza stanzaAdiacente) {
+	public void impostaStanzaAdiacente( Direzione direzione,Stanza stanzaAdiacente) {
 		if(this.stanzeAdiacenti.size()<4)
 			this.stanzeAdiacenti.put(direzione,stanzaAdiacente);
 			}
@@ -59,7 +59,7 @@ public class Stanza {
 	 * Restituisce la stanza adiacente nella direzione specificata
 	 * @param direzione
 	 */
-	public Stanza getStanzaAdiacente(String direzione) {
+	public Stanza getStanzaAdiacente(Direzione direzione) {
 		return this.stanzeAdiacenti.get(direzione);
 		}
 
@@ -145,7 +145,7 @@ public boolean equals(Object o) {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(this.nome);
 		risultato.append("\nUscite: ");
-		for (String direzione : this.stanzeAdiacenti.keySet())
+		for (Direzione direzione : this.stanzeAdiacenti.keySet())
 			if (direzione!=null)
 				risultato.append(" " + direzione);
 		risultato.append("\nAttrezzi nella stanza: ");
@@ -196,7 +196,7 @@ public boolean equals(Object o) {
 
 
 
-	public Set <String> getDirezioni() {
+	public Set <Direzione> getDirezioni() {
 		 
 		return this.stanzeAdiacenti.keySet();
 	}
@@ -206,14 +206,14 @@ public boolean equals(Object o) {
 	}
 
 	public Collection<Stanza> getStanzeAdiacenti() {
-		return this.stanzeAdiacenti.values();
+		return (List)this.stanzeAdiacenti.values();
 	}
 
-	public void setStanzeAdiacenti(Map <String,Stanza> stanzeAdiacenti) {
+	public void setStanzeAdiacenti(Map <Direzione,Stanza> stanzeAdiacenti) {
 		this.stanzeAdiacenti = stanzeAdiacenti;
 	}
 
-	public Map <String,Stanza> getMapStanzeAdiacenti(){
+	public Map <Direzione,Stanza> getMapStanzeAdiacenti(){
 		return this.stanzeAdiacenti;
 	}
 

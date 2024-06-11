@@ -9,10 +9,10 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.giocatore.Borsa;
 
 public class ComandoGuardaOrdinatoPerNome extends AbstractComando {
-IOConsole console;
+
 
 public ComandoGuardaOrdinatoPerNome () {
-	console=new IOConsole();
+	
 }
 	@Override
 	public void esegui(Partita partita) {
@@ -20,20 +20,15 @@ public ComandoGuardaOrdinatoPerNome () {
 		 Borsa borsa=partita.getGiocatore().getBorsa();
 		 Set<Attrezzo> attrezziBorsa=borsa.getContenutoOrdinatoPerNome();
 		 
-		 console.mostraMessaggio(stanzaCorrente.getDescrizione()+"\nContenuto borsa ordinato per Nome:");
+		 this.getIo().mostraMessaggio(stanzaCorrente.getDescrizione()+"\nContenuto borsa ordinato per Nome:");
 		 if(borsa.getNumeroAttrezzi()==0)
-			 console.mostraMessaggio("  la borsa è vuota");
+			 this.getIo().mostraMessaggio("  la borsa è vuota");
 		 else
-			console.mostraMessaggio("\n"+attrezziBorsa.toString());
-		 console.mostraMessaggio("\n");
+			 this.getIo().mostraMessaggio("\n"+attrezziBorsa.toString());
+		 this.getIo().mostraMessaggio("\n");
 		 
 		
 	}
 
 
-	@Override
-	public void setIo(IO io) {
-		this.console=(IOConsole) io;
-		
-	}
 }

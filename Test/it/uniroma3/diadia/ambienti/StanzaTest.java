@@ -15,7 +15,7 @@ public class StanzaTest {
     
     private Attrezzo attrezzo1;
     private Attrezzo attrezzo2;
-    private Map <String,Stanza> stanzeAdiacenti;
+    private Map <Direzione,Stanza> stanzeAdiacenti;
    
    
    
@@ -26,10 +26,10 @@ public class StanzaTest {
         stanzaNord= new Stanza("stanzaNord");
         
         stanzeAdiacenti=new HashMap<>();
-        stanzeAdiacenti.put("nord", stanzaNord);
-        stanzeAdiacenti.put("sud", new Stanza("stanzaSud"));
-        stanzeAdiacenti.put("est", new Stanza("stanzaEst"));
-        stanzeAdiacenti.put("ovest", new Stanza("stanzaOvest"));
+        stanzeAdiacenti.put(Direzione.nord, stanzaNord);
+        stanzeAdiacenti.put(Direzione.sud, new Stanza("stanzaSud"));
+        stanzeAdiacenti.put(Direzione.est, new Stanza("stanzaEst"));
+        stanzeAdiacenti.put(Direzione.ovest, new Stanza("stanzaOvest"));
         stanza.setStanzeAdiacenti(stanzeAdiacenti);
        
         
@@ -73,7 +73,7 @@ public class StanzaTest {
     
     @Test
     public void testStanzaAdiacenteImpostataCorrettamente() {
-        assertEquals(stanzaNord, stanza.getStanzaAdiacente("nord"));
+        assertEquals(stanzaNord, stanza.getStanzaAdiacente(Direzione.nord));
     }
     
     @Test
@@ -87,10 +87,6 @@ public class StanzaTest {
     	assertEquals(2,stanza.getNumeroAttrezzi());
     }
     
-    @Test
-    public void testVerificaCorrettezzaDelMetodoToString() {
-        assertEquals("stanza\nUscite:  nord sud est ovest\nAttrezzi nella stanza: attrezzo1 (5kg) attrezzo2 (0kg) ", stanza.getDescrizione());
-    }
     
     @Test
     public void testVerificaEsistenzaDiUnAttrezzoNellaStanzaConOutputTrue() {

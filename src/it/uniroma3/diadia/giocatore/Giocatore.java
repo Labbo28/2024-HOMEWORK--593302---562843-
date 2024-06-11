@@ -1,4 +1,7 @@
 package it.uniroma3.diadia.giocatore;
+
+import it.uniroma3.diadia.Configuratore;
+
 /**
  * Classe Giocatore-questa classe ha il compito di gestire i cfu del giocatore
  * e di fornire al giocatore una borsa
@@ -7,7 +10,7 @@ package it.uniroma3.diadia.giocatore;
  * @version 1.0
  */
 public class Giocatore {
-	static final private int CFU_INIZIALI = 20;
+	static final private int CFU_INIZIALI = Configuratore.getCFU();
 	int cfu;
 	private Borsa borsa;
 	
